@@ -11,7 +11,32 @@ namespace ExplosionAPI.Controllers
     [ApiController]
     public class MumblingController : ControllerBase
     {
+        [HttpGet]
+        public string Mumbling(string who)
+        {
+            var accumStr = "";
+            var charList = new List<char>(who);
+            for (var i = 0; i < charList.Count; i++)
+            {
+                for (var j = 0; j <= i; j++)
+                {
+                    if (j == 0)
+                    {
+                        accumStr += char.ToUpper(charList[i]);
+                    }
+                    else
+                    {
+                        accumStr += char.ToLower(charList[i]);
+                    }
+                }
+                if (i != charList.Count - 1)
+                {
+                    accumStr += "-";
+                }
+            }
+            return accumStr;
 
+        }
 
     }
 }
